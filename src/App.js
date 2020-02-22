@@ -12,13 +12,18 @@ import youtube from './api/youtube';
 
 /* class based component that extends react component */
 class App extends React.Component {
+    handleSubmit = async (SearchTerm) => {
+        const response = await youtube.get('search', { params: { q: searchTerm }});
+
+        console.log(response);
+    }
     render() {
         return (
             <Grid justify="center" container spacing={16}>
                 <Grid item xs={12}>
                     <Grid container spacing={16}>
                         <Grid item xs={12}>
-                        <SearchBar />
+                        <SearchBar onFormSubmit={this.handleSubmit} />
                         </Grid>
                         <Grid item xs={8}>
                         <VideoDetail />
