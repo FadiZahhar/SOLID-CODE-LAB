@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 
 /* import our custom developed components, using simple oneline import
 * will use the index.js */
-import { SearchBar, VideoDetail } from './components'
+import { SearchBar, VideoDetail, VideoList } from './components'
 //import SearchBar from './components/SearchBar';
 //import VideoDetail from './components/VideoDetail';
 /* importing youtube api to use axios to do the get Request method */
@@ -32,6 +32,7 @@ class App extends React.Component {
 
     
     render() {
+        const { selectedVideo, videos } = this.state;
         return (
             <Grid justify="center" container spacing={10}>
                 <Grid item xs={12}>
@@ -43,7 +44,7 @@ class App extends React.Component {
                         <VideoDetail video={this.state.selectedVideo} />
                         </Grid>
                         <Grid item xs={12}>
-                        {/* Video List */}
+                        <VideoList videos={videos} />
                         </Grid>
                     </Grid>
                 </Grid>
