@@ -16,6 +16,13 @@ class App extends React.Component {
         videos: [],
         selectedVideo: null,
     }
+
+    componentDidMount() {
+        this.handleSubmit('wpbeirut');
+    }
+    onVideoSelect = (video) => {
+        this.setState({selectedVideo: video});
+    }
     handleSubmit = async (searchTerm) => {
         const response = await youtube.get('search', { 
             params: {
@@ -36,15 +43,15 @@ class App extends React.Component {
         return (
             <Grid justify="center" container spacing={10}>
                 <Grid item xs={12}>
-                    <Grid container spacing={10}>
+                    <Grid container spacing={12}>
                         <Grid item xs={12}>
                         <SearchBar onFormSubmit={this.handleSubmit} />
                         </Grid>
                         <Grid item xs={8}>
                         <VideoDetail video={this.state.selectedVideo} />
                         </Grid>
-                        <Grid item xs={12}>
-                        <VideoList videos={videos} />
+                        <Grid item xs={4}>
+                        <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
                         </Grid>
                     </Grid>
                 </Grid>
