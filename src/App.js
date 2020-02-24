@@ -9,7 +9,13 @@ import { SearchBar, VideoDetail, VideoList } from './components'
 //import VideoDetail from './components/VideoDetail';
 /* importing youtube api to use axios to do the get Request method */
 import youtube from './api/youtube';
-
+// importing the react route
+import { BrowserRouter , Router, Switch, Route } from 'react-router-dom';
+// import the Sign in form.
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+// import the app style
+import './App.css';
 /* class based component that extends react component */
 class App extends React.Component {
     state = {
@@ -41,21 +47,18 @@ class App extends React.Component {
     render() {
         const { selectedVideo, videos } = this.state;
         return (
-            <Grid justify="center" container spacing={10}>
-                <Grid item xs={12}>
-                    <Grid container spacing={12}>
-                        <Grid item xs={12}>
-                        <SearchBar onFormSubmit={this.handleSubmit} />
-                        </Grid>
-                        <Grid item xs={8}>
-                        <VideoDetail video={this.state.selectedVideo} />
-                        </Grid>
-                        <Grid item xs={4}>
-                        <VideoList videos={videos} onVideoSelect={this.onVideoSelect} />
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
+<div>
+				<BrowserRouter>
+                <div className="App">
+						<Switch>
+						<Route path="/signin" component={SignIn} />	
+                        <Route path="/signup" component={SignUp} />	
+						</Switch>
+					</div>
+				</BrowserRouter>
+			</div>
+
+
         )
     }
 }
