@@ -10,7 +10,9 @@ import { SearchBar, VideoDetail, VideoList } from './components'
 /* importing youtube api to use axios to do the get Request method */
 import youtube from './api/youtube';
 // importing the react route
-import { BrowserRouter , Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter , Router, Switch, Route, Redirect } from 'react-router-dom';
+// import topnav 
+import TopNav from './components/topnav';
 // import the Sign in form.
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
@@ -48,8 +50,10 @@ class App extends React.Component {
         const { selectedVideo, videos } = this.state;
         return (
 <div>
+    <TopNav />
 				<BrowserRouter>
                 <div className="App">
+                <Route exact path="/" render={() => ( <Redirect to="/signin"/>)} />
 						<Switch>
 						<Route path="/signin" component={SignIn} />	
                         <Route path="/signup" component={SignUp} />	
